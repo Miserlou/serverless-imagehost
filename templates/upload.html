@@ -1,0 +1,46 @@
+<!doctype html>
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <title>Upload new File</title>
+</head>
+
+<body>
+  <div class="container">
+
+  <h1>Upload new File</h1>
+
+    <p>
+       <input id='filePicker' type=file name=file>
+       <form action="" method="post">
+          <textarea id='b64file' name='b64file' style="display: none"></textarea>
+          <input class="btn btn-primary" type=submit value=Upload>
+      </form>
+    </p>
+
+    <script>
+    // via http://jsfiddle.net/eliseosoto/JHQnk/
+    var handleFileSelect = function(evt) {
+        var files = evt.target.files;
+        var file = files[0];
+
+        if (files && file) {
+            var reader = new FileReader();
+
+            reader.onload = function(readerEvt) {
+                var binaryString = readerEvt.target.result;
+                document.getElementById("b64file").value = btoa(binaryString);
+            };
+
+            reader.readAsBinaryString(file);
+        }
+    };
+
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        document.getElementById('filePicker').addEventListener('change', handleFileSelect, false);
+    } else {
+        alert('The File APIs are not fully supported in this browser.');
+    }
+    </script>
+
+  </div>
+</body>

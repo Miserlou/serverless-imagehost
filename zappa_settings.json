@@ -1,0 +1,6 @@
+{
+    "dev": {
+       "s3_bucket": "lmbda",
+       "app_function": "my_app.app"
+    }
+}
